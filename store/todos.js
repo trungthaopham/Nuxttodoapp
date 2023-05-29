@@ -23,7 +23,8 @@ export const mutations = {
     state.todoList = data
   },
   add(state, content) {
-    state.todoList.push(content)
+    // state.todoList.push(content)
+    state.todoList.unshift(content)
   },
   edit(state, todo) {
     const index = state.todoList.findIndex(
@@ -50,7 +51,7 @@ export const actions = {
     return this.$axios
       .$get('https://62e8e01a01787ec7120c239e.mockapi.io/api/v1/todos')
       .then((res) => {
-        vuexContext.commit('store', res)
+        vuexContext.commit('store', res.reverse());
       })
   },
   addTodo(vuexContext, content) {
